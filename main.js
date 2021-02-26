@@ -8,7 +8,7 @@ function initCards() {
     }
 }
   
-  // Shuffles an array
+// Shuffles an array
 function shuffle(array) {
     let currentIndex = array.length, temp, randomIndex;
     while (0 !== currentIndex) {
@@ -62,6 +62,7 @@ function calculateWinner(card1,card2) {
     }
 }
 
+// This function plays out 1 round and is run every time the button is clicked
 function round() {
     roundCounter++;
     document.getElementById("round").innerHTML = "Round "+roundCounter;
@@ -75,6 +76,7 @@ function round() {
     } 
 }
 
+// Outputs the overall winner of the game
 function overallWinner() {
     if (p1cards.length > p2cards.length) {
         document.getElementById("p3").innerHTML = "Player 1 is the winner!";
@@ -92,7 +94,7 @@ class Card {
     }
 }
   
-// Main
+// Main Program
 cards=[];
 p1cards=[];
 p2cards=[];
