@@ -1,6 +1,6 @@
 // Create the cards array with all the necessary cards
 function initCards() {
-    colours = ["Red","Yellow","Black"];
+    let colours = ["Red","Yellow","Black"];
     for (i=0;i<3;i++) {
       for (j=1;j<11;j++) {
         cards[(10*i)+j-1] = new Card(colours[i],j);
@@ -66,7 +66,15 @@ function calculateWinner(card1,card2) {
 function round() {
     roundCounter++;
     document.getElementById("round").innerHTML = "Round "+roundCounter;
-    document.getElementById("p1").innerHTML = "Player 1's card is "+cards[0].colour+" "+cards[0].value+"<br>Player 2's card is "+cards[1].colour+" "+cards[1].value;
+    let card0colour = cards[0].colour;
+    if (card0colour == "Yellow") {
+        card0colour = "#ffdd00";
+    }
+    let card1colour = cards[1].colour;
+    if (card1colour == "Yellow") {
+        card1colour = "#ffdd00";
+    }
+    document.getElementById("p1").innerHTML = "Player 1's card is "+"<span style='color:"+card0colour+";'>"+cards[0].colour+" "+cards[0].value+"</span>"+"<br>Player 2's card is "+"<span style='color:"+card1colour+"'>"+cards[1].colour+" "+cards[1].value+"</span>";
     calculateWinner(cards[0],cards[1]);
     document.getElementById("p2").innerHTML = "P1 has "+p1cards.length+" cards.<br>P2 has "+p2cards.length+" cards.<br>There are "+cards.length+" cards left in the deck.";
     if (cards.length==0) {
@@ -102,4 +110,3 @@ roundCounter = 0;
 initCards();
 shuffle(cards);
 document.getElementById("p2").innerHTML = "There are "+cards.length+" cards in the deck.";
-console.log(cards);
