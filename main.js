@@ -1,8 +1,8 @@
 // Create the cards array with all the necessary cards
 function initCards() {
     let colours = ["Red","Yellow","Black"];
-    for (i=0;i<3;i++) {
-      for (j=1;j<11;j++) {
+    for (let i=0;i<3;i++) {
+      for (let j=1;j<11;j++) {
         cards[(10*i)+j-1] = new Card(colours[i],j);
       }
     }
@@ -23,27 +23,27 @@ function shuffle(array) {
 
 // Calculates the winner between 2 cards using the rules from the brief
 function calculateWinner(card1,card2) {
-    if (card1.colour == "Red" && card2.colour == "Black") {
+    if (card1.colour === "Red" && card2.colour === "Black") {
         document.getElementById("p1").innerHTML += "<br>P1 wins as Red beats Black.";
         p1cards.push(card1,card2);
         cards.splice(0,2);
-    } else if (card1.colour == "Black" && card2.colour == "Red") {
+    } else if (card1.colour === "Black" && card2.colour === "Red") {
         document.getElementById("p1").innerHTML += "<br>P2 wins as Red beats Black.";
         p2cards.push(card1,card2);
         cards.splice(0,2);
-    } else if (card1.colour == "Yellow" && card2.colour == "Red") {
+    } else if (card1.colour === "Yellow" && card2.colour === "Red") {
         document.getElementById("p1").innerHTML += "<br>P1 wins as Yellow beats Red.";
         p1cards.push(card1,card2);
         cards.splice(0,2);
-    } else if (card1.colour == "Red" && card2.colour == "Yellow") {
+    } else if (card1.colour === "Red" && card2.colour === "Yellow") {
         document.getElementById("p1").innerHTML += "<br>P2 wins as Yellow beats Red.";
         p2cards.push(card1,card2);
         cards.splice(0,2);
-    } else if (card1.colour == "Black" && card2.colour == "Yellow") {
+    } else if (card1.colour === "Black" && card2.colour === "Yellow") {
         document.getElementById("p1").innerHTML += "<br>P1 wins as Black beats Yellow.";
         p1cards.push(card1,card2);
         cards.splice(0,2);
-    } else if (card1.colour == "Yellow" && card2.colour == "Black") {
+    } else if (card1.colour === "Yellow" && card2.colour === "Black") {
         document.getElementById("p1").innerHTML += "<br>P2 wins as Black beats Yellow.";
         p2cards.push(card1,card2);
         cards.splice(0,2);
@@ -67,18 +67,18 @@ function round() {
     roundCounter++;
     document.getElementById("round").innerHTML = "Round "+roundCounter;
     let card0colour = cards[0].colour;
-    if (card0colour == "Yellow") {
+    if (card0colour === "Yellow") {
         card0colour = "#ffdd00";
     }
     let card1colour = cards[1].colour;
-    if (card1colour == "Yellow") {
+    if (card1colour === "Yellow") {
         card1colour = "#ffdd00";
     }
     document.getElementById("p1").innerHTML = "Player 1's card is "+"<span style='color:"+card0colour+";'>"+cards[0].colour+" "+cards[0].value+"</span>"+"<br>Player 2's card is "+"<span style='color:"+card1colour+"'>"+cards[1].colour+" "+cards[1].value+"</span>";
     calculateWinner(cards[0],cards[1]);
     document.getElementById("p2").innerHTML = "P1 has "+p1cards.length+" cards.<br>P2 has "+p2cards.length+" cards.<br>There are "+cards.length+" cards left in the deck.";
-    if (cards.length==0) {
-        elem = document.getElementById("button1");
+    if (cards.length===0) {
+        let elem = document.getElementById("button1");
         elem.parentNode.removeChild(elem);
         overallWinner();
     } 

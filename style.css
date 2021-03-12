@@ -1,8 +1,17 @@
 * {
     background-color: skyblue;
-    font-family: Arial;
+    font-family: Arial, serif;
     text-align: center;
     align-items: center;
+}
+h1 {
+    margin-top: 0;
+}
+#wrap {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
 }
 #round {
     text-decoration: underline;
@@ -13,7 +22,6 @@
     margin: auto;
     align-items: center;
     padding: 5px;
-    width: 50%;
     border: 3px solid black;
     background-color: white;
 }
@@ -24,7 +32,6 @@
     margin: auto;
     align-items: center;
     padding: 10px;
-    width: 50%;
     border: 3px solid black;
     background-color: white;
 }
