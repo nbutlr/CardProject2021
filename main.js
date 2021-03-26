@@ -85,21 +85,20 @@ function round() {
 function overallWinner() {
     if (p1cards.length > p2cards.length) {
         document.getElementById("p3").innerHTML = "Player 1 is the winner!<br>Cards: ";
-        for (let i=0;i<p1cards.length;i++) {
-            let cardcolour = p1cards[i].colour;
-            if (cardcolour === "Yellow") {cardcolour = "#ffdd00";}
-            document.getElementById("p3").innerHTML += "<span style='color:"+cardcolour+";'>"+p1cards[i].colour+" "+p1cards[i].value+"</span>" + ", ";
-        }
+        cardColours(p1cards);
     } else {
         // There cannot be a draw as cards are moved in groups of 2 //
-        document.getElementById("p3").innerHTML = "Player 2 is the winner!";
-        for (let j = 0; j < p2cards.length; j++) {
-            let cardcolour = p2cards[j].colour;
-            if (cardcolour === "Yellow") {
-            cardcolour = "#ffdd00";
-            }
-            document.getElementById("p3").innerHTML += "<span style='color:" + cardcolour + ";'>" + p2cards[j].colour + " " + p2cards[j].value + "</span>" + ", ";
-        }
+        document.getElementById("p3").innerHTML = "Player 2 is the winner!<br>Cards: ";
+        cardColours(p2cards);
+    }
+}
+
+// Avoids doubled code in the above function //
+function cardColours(list) {
+    for (let i=0;i<list.length;i++) {
+        let cardColour = list[i].colour;
+        if (cardColour === "Yellow") {cardColour = "#ffdd00";}
+        document.getElementById("p3").innerHTML += "<span style='color:"+cardColour+";'>"+list[i].colour+" "+list[i].value+"</span>" + ", ";
     }
 }
 
