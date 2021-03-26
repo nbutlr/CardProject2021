@@ -88,6 +88,32 @@ function logKey(e) {
         location.reload();
     } else if (e.code === "Space" && roundCounter < 15) {
         round();
+    } else if (e.code === "KeyP") {
+        let rc = roundCounter;
+        for (let i=0;i<15-rc;i++) {
+            round();
+        }
+    } else if (e.code === "KeyA") {
+        if (!toggle) {toggle = true;
+            document.getElementById("hotkey").innerHTML = "Hotkeys:<br>Space to start next round<br>N to restart the game<br>P to skip to end<br>A to toggle auto round (On)";
+            localStorage.setItem("toggle","true");
+            location.reload();}
+        else {toggle=false;
+            document.getElementById("hotkey").innerHTML = "Hotkeys:<br>Space to start next round<br>N to restart the game<br>P to skip to end<br>A to toggle auto round (Off)";
+        }
+        autoRound();
+    }
+}
+
+function autoRound() {
+    if (toggle == true) {
+        for (let i = 0; i < 15; i++) {
+            round();
+        }
+        localStorage.setItem("toggle","true");
+        setTimeout(()=>{if(toggle){location.reload()}}, 1000);
+    } else {
+        localStorage.removeItem("toggle");
     }
 }
 
@@ -121,6 +147,11 @@ class Card {
 }
   
 // Main Program - initialises lists and cards and stuff //
+let toggle = Boolean(localStorage.getItem("toggle"));
+localStorage.removeItem("toggle");
+if (toggle) {
+    document.getElementById("hotkey").innerHTML = "Hotkeys:<br>Space to start next round<br>N to restart the game<br>P to skip to end<br>A to toggle auto round (On)"
+}
 document.addEventListener("keydown",logKey);
 cards=[];
 p1cards=[];
@@ -129,3 +160,4 @@ roundCounter = 0;
 initCards();
 shuffle(cards);
 document.getElementById("p2").innerHTML = "There are "+cards.length+" cards in the deck.";
+autoRound();
