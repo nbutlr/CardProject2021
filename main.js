@@ -75,10 +75,20 @@ function round() {
     calculateWinner(cards[0],cards[1]);
     document.getElementById("p2").innerHTML = "P1 has "+p1cards.length+" cards.<br>P2 has "+p2cards.length+" cards.<br>There are "+cards.length+" cards left in the deck.";
     if (cards.length===0) {
-        let elem = document.getElementById("button1");
-        elem.parentNode.removeChild(elem);
+        document.getElementById("button1").innerHTML = "New Game";
+        document.getElementById("button1").onclick = function() {location.reload();};
+        document.addEventListener("keydown",logKey);
         overallWinner();
     } 
+}
+
+function logKey(e) {
+    console.log(` ${e.code}`);
+    if (e.code === "KeyN") {
+        location.reload();
+    } else if (e.code === "Space" && roundCounter < 15) {
+        round();
+    }
 }
 
 // Outputs the overall winner of the game //
@@ -111,6 +121,7 @@ class Card {
 }
   
 // Main Program - initialises lists and cards and stuff //
+document.addEventListener("keydown",logKey);
 cards=[];
 p1cards=[];
 p2cards=[];
